@@ -30,6 +30,10 @@ module.exports = function (app) {
         //smartcontrac logic
         Warrant.create({
             fileHASH: req.body.fileHASH,
+            validations: 0,
+            file: req.body.file,
+
+
             done: false
         }, function (err, warrant) {
             if (err)

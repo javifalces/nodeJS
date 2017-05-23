@@ -41,7 +41,7 @@
 			<div class="row" ng-repeat="
 			 warrant in warrants">
 				<div class="card card-block">
-					<h4 class="SHA of file">{{ warrant.fileHASH }}</h4>
+					<h2 class="SHA of file">{{ warrant.fileHASH }}</h2>
 					<p class="validations">Validations: {{warrant.validations}}</p>
 
 
@@ -62,28 +62,32 @@
 		<div id="warrant-form" class="row">
 
 			<!-- FORM TO upload warrant contract -->
-			<div id="MD5FileDiv" class="fieldset">
-				<div class="legend blueBackground"><div class="IcoSprite IcoFile"></div>MD5 & SHA1 Hash Generator For File</div>
-				<div id="result">Generate and verify the MD5/SHA1 checksum of a file without uploading it.</div>
-				<input type="file" id="files" name="files[]"/>
-				<div id="drop_zone" onclick="document.getElementById('files').click();return false;">Click to select a file, or drag and drop it here( max: 4GB ).</div>
-				<div id="file_info">
-					<div id="file_name" class="line"><div class="lineLeft">Filename:</div><div id="file_name_label" class="lineRight">No File Selected</div>
-					</div>
-				</div>
 
-			</div>
 
 
 
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
+						<div id="MD5FileDiv" class="fieldset">
+							<div class="legend blueBackground"><div class="IcoSprite IcoFile"></div>MD5 & SHA1 Hash Generator For File</div>
+							<div id="result">Generate and verify the MD5/SHA1 checksum of a file without uploading it.</div>
+							<input type="file" id="files" name="files[]"/>
+							<div id="drop_zone" onclick="document.getElementById('files').click();return false;">Click to select a file, or drag and drop it here( max: 4GB ).</div>
+							<div id="file_info">
+								<div id="file_name" class="line"><div class="lineLeft">Filename:</div><div id="file_name_label" class="lineRight">No File Selected</div>
+								</div>
+							</div>
+
+							<button onclick="createWarrant()">Try it</button>
+
+						</div>
+					</div>
+
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 						<input type="text" class="form-control input-lg text-center" placeholder="add file sha" ng-model="formData.fileHASH">
-						<input type="number" class="form-control input-lg text-center" placeholder="0" ng-model="formData.number">
-					</div>
+
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
 					<button type="Add" class="btn btn-primary btn-lg" ng-click="createWarrant()">Add</button>

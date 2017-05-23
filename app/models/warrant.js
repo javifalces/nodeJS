@@ -12,5 +12,12 @@ module.exports = mongoose.model('Warrant', {
     file: {
         type: Buffer,
         default: ''
+    },
+    comments:{
+        type:[String]
+    },
+    status:{
+        type: String,
+        default: 'not validated'
     }
 });

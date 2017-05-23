@@ -35,6 +35,26 @@ angular.module('warrantController', [])
 			}
 		};
 
+        $scope.createWarrantFile = function() {
+
+            // validate the formData to make sure that something is there
+            // if form is empty, nothing will happen
+            if ($scope.formData.fileHASH != undefined) {
+                $scope.loading = true;
+
+                // call the create function from our service (returns a promise object)
+                Warrants.create($scope.formData)
+
+                // if successful creation, call our get function to get all the new todos
+                    .success(function(data) {
+                        $scope.loading = false;
+                        $scope.formData = {}; // clear the form so our user is ready to enter another
+                        $scope.warrants = data; // assign our new list of todos
+                    });
+            }
+        };
+
+
 		// Update ==================================================================
 		// update a warrant after checking it
 		$scope.validateWarrant = function(id) {
