@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="warrantApplication">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -23,7 +23,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<!--<script src="js/services/todos.js"></script> &lt;!&ndash; load our todo service &ndash;&gt;-->
+	<script src="js/services/warrants.js"></script> <!-- load our warrant service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
@@ -33,41 +34,59 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>I'm a warrant list <span class="label label-info">{{ warrants.length }}</span></h1>
 		</div>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+		<div id="warrant-list" class="container">
+			<div class="row" ng-repeat="
+			 warrant in warrants">
+				<div class="card card-block">
+					<h4 class="SHA of file">{{ warrant.fileHASH }}</h4>
+					<p class="validations">Validations: {{warrant.validations}}</p>
 
-				
 
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
+					<button type="Add" class="btn btn-primary btn-lg" ng-click="removeWarrant(warrant._id)">Remove</button>
+					<button type="Add" class="btn btn-primary btn-lg" ng-click="validateWarrant(warrant._id)">Validate</button>
+
 				</div>
-
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
 			</div>
 		</div>
 
+
+
+
+
+
+
 		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
+		<div id="warrant-form" class="row">
+
+			<!-- FORM TO upload warrant contract -->
+			<div id="MD5FileDiv" class="fieldset">
+				<div class="legend blueBackground"><div class="IcoSprite IcoFile"></div>MD5 & SHA1 Hash Generator For File</div>
+				<div id="result">Generate and verify the MD5/SHA1 checksum of a file without uploading it.</div>
+				<input type="file" id="files" name="files[]"/>
+				<div id="drop_zone" onclick="document.getElementById('files').click();return false;">Click to select a file, or drag and drop it here( max: 4GB ).</div>
+				<div id="file_info">
+					<div id="file_name" class="line"><div class="lineLeft">Filename:</div><div id="file_name_label" class="lineRight">No File Selected</div>
+					</div>
+				</div>
+
+			</div>
+
+
+
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="add file sha" ng-model="formData.fileHASH">
+						<input type="number" class="form-control input-lg text-center" placeholder="0" ng-model="formData.number">
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+					<button type="Add" class="btn btn-primary btn-lg" ng-click="createWarrant()">Add</button>
 				</form>
 			</div>
 		</div>
