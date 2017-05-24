@@ -1,4 +1,5 @@
 angular.module('warrantController', [])
+// md5 = require('js-md5')
 
 	// inject the Warrant service factory into our controller
 	.controller('mainController', ['$scope','$http','Warrants', function($scope, $http, Warrants) {
@@ -35,12 +36,18 @@ angular.module('warrantController', [])
 			}
 		};
 
-        $scope.createWarrantFile = function() {
+        $scope.createWarrantFile = function(binaryFile) {
 
             // validate the formData to make sure that something is there
             // if form is empty, nothing will happen
-            if ($scope.formData.fileHASH != undefined) {
+            if (binaryFile != undefined) {
                 $scope.loading = true;
+
+                // var hash = md5(binaryFile);
+
+                $scope.formData.file=binaryFile
+                // $scope.formData.fileHASH=hash
+
 
                 // call the create function from our service (returns a promise object)
                 Warrants.create($scope.formData)
