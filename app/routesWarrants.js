@@ -2,6 +2,7 @@
  * Created by XE61374 on 23/05/2017.
  */
 var Warrant = require('./models/warrant')
+var fabric = require('./services/hyperledgerService')
 // var fabricClient = require('fabric-sdk-node/fabric-client/index')
 // var fabricPeer = require('fabric-sdk-node/fabric-client/lib/Peer')
 function getWarrants(res) {
